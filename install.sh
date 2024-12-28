@@ -35,7 +35,7 @@ IP=$(ip addr show ens3 | grep -oP 'inet \K[\d.]+')
 # Запуск контейнера с использованием сгенерированного хеша
 docker run -d \
   --name=wg-easy \
-  -e WG_HOST=$IP \
+  -e WG_HOST=localhost \
   -e PASSWORD_HASH="$hash" \
   -e WG_MTU=1280 \
   -v ~/.wg-easy:/etc/wireguard \
