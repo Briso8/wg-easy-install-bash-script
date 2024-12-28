@@ -1,7 +1,6 @@
 #!/bin/bash
 
 
-
 # Генерация случайного пароля
 echo "Enter Password:"
 read -s PASSWORD
