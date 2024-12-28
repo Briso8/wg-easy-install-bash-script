@@ -4,7 +4,7 @@
 
 # Генерация случайного пароля
 echo "Enter Password:"
-read PASSWORD
+read -s PASSWORD
 
 # Обновление пакетов и установка apache2-utils
 sudo apt-get update
@@ -22,12 +22,6 @@ hash=$(htpasswd -nbBC 10 "" "$PASSWORD" | tr -d ':\n')
 
 # Вывод хеша
 echo "Bcrypt хеш: $hash"
-
-# Установка Docker
-sudo apt install -y docker.io docker-compose -y
-
-# Иногда Docker установлен, но по какой-то причене он не запустился. Это поднимет его принудительно. 
-sudo systemctl enable --now docker
 
 # Проверка успешной установки Docker Compose
 docker-compose --version
