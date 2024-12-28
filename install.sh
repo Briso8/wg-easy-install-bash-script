@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Enter Password:"
-read PASSWORD
+read -s PASSWORD
 
 # Обновление пакетов и установка apache2-utils
 sudo apt-get update
@@ -35,7 +35,7 @@ IP=$(ip addr show ens3 | grep -oP 'inet \K[\d.]+')
 # Запуск контейнера с использованием сгенерированного хеша
 docker run -d \
   --name=wg-easy \
-  -e WG_HOST=localhost \
+  -e WG_HOST=$IP \
   -e PASSWORD_HASH="$hash" \
   -e WG_MTU=1280 \
   -v ~/.wg-easy:/etc/wireguard \
