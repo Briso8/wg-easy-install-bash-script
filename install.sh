@@ -1,22 +1,21 @@
 #!/bin/bash
 
 
-# Генерация случайного пароля
 # Запрос пароля
 echo "Введите пароль:"
 stty -echo  # Отключаем отображение символов
-# Проверим, что нажатие клавиш действительно будет восприниматься
-if ! read password; then
-  echo "Ошибка ввода."
-  exit 1
-fi
+password=""
+# Читаем пароль
+while IFS= read -r -s -n 1 char; do
+    if [ "$char" = "" ]; then
+        break
+    fi
+    password="$password$char"
+done
 stty echo  # Включаем отображение символов
 
 echo # Печать пустой строки для улучшения визуального восприятия
-
-# Важно: Здесь мы не выводим сам пароль, чтобы сохранить конфиденциальность
 echo "Пароль введен."
-
 # Обновление пакетов и установка apache2-utils
 sudo apt-get update
 sudo apt-get install -y apache2-utils
