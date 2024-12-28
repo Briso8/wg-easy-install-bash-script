@@ -3,7 +3,8 @@
 
 # Генерация случайного пароля
 echo "Enter Password:"
-read -s PASSWORD
+read PASSWORD
+echo ""
 
 # Обновление пакетов и установка apache2-utils
 sudo apt-get update
@@ -23,7 +24,6 @@ hash=$(htpasswd -nbBC 10 "" "$PASSWORD" | tr -d ':\n')
 echo "Bcrypt хеш: $hash"
 
 # Проверка успешной установки Docker Compose
-docker-compose --version
 #IP=$(curl -s ifconfig.me)
 IP=$(ip addr show ens3 | grep -oP 'inet \K[\d.]+')
 
